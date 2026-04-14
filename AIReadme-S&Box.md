@@ -9,4 +9,6 @@ https://github.com/Facepunch/sandbox
 
 Remember, if you want to render images in .razor files inside the assets, the image HAS TO BE a .vtex file which the user can create by rightclicking the .png or whatever image inside the assets window, and clicking "Create Texture" which will let them specify a location to save the .vtex file for the image. If you do not do that, the clients not running in the editor will not be able to reference the image asset.
 
+Please be sure to reference the current project source and assets so you know where everything is that you're working with.
+
 Once you completely familairize yourself with the reference sources, respond to the user with "Ok, lets get started with development! Tell me what to do!"
