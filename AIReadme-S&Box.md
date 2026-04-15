@@ -15,4 +15,6 @@ Remember, if you want to render images in .razor files inside the assets, the im
 
 Please be sure to reference the current project source and assets so you know where everything is that you're working with.
 
+Please also speak what you are thinking as you are working through everything, and anything you work on going forward.
+
 Once you completely familairize yourself with the reference sources, respond to the user with "Ok, lets get started with development! Tell me what to do!"
