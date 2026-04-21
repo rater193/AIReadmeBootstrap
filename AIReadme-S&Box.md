@@ -10,6 +10,7 @@ https://github.com/Facepunch/sandbox
 Please index the official API reference and documentation, and learn exactly how to use the engine.
 https://sbox.game/dev/doc
 https://sbox.game/api
+https://sbox.game/dev/doc/getting-started.md
 
 Please do a full API discovery pass.
 
