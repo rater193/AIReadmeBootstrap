@@ -103,9 +103,23 @@ Before finishing a coding task:
 - Read the final diff.
 - Check for accidental unrelated edits.
 - Validate prefab/component metadata if any assets were touched.
+- When adding new `PetComponent` properties, update existing pet prefabs so the fields are visible/configurable in the editor. Do this with targeted edits and verify the new fields only land on `PetComponent`, not on root objects or `Sandbox.ModelRenderer`.
 - Run a build or the closest available validation command.
 - If the build cannot run because of local permissions or environment issues, say that clearly and report what validation did run.
 - Mention changed files and the important behavior changes in the final response.
+
+## Pet System Notes
+
+- `PetComponent` is the per-pet content configuration source. Put future pet tuning values there when they belong to the pet prefab, such as display name, coin multiplier, damage, attack interval, attack range multiplier, movement multiplier, bob multiplier, and lunge multiplier.
+- Pet display names are stored on `PetComponent.DisplayName`, not on prefab root objects or renderer components.
+- Pet coin multipliers are additive bonuses, not sequential multipliers. Example: `1.1`, `1.8`, and `1.3` should become `1 + 0.1 + 0.8 + 0.3 = 2.2x`.
+- Equipped pets should move in world space. They should walk toward assigned world positions rather than relying on the player’s local transform.
+- Pets orbit the player when idle and swarm around the player’s active destructable target when attacking.
+- Pet attacks should use `InteractGivePlayerCoin.ApplyPetDamage(...)` so pet damage follows the same health, reward, hit feedback, and destroy flow as player attacks.
+- Pet attack visuals should face the target and lunge in the target direction.
+- Pet rotation should be interpolated with `PetTurnSpeed`; avoid directly snapping `WorldRotation` every frame unless explicitly desired.
+
+
 
 When you are ready to begin after reading this file and the project context, say:
 
