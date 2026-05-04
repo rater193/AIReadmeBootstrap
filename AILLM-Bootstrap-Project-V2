@@ -1,0 +1,302 @@
+# AI Development Guide for Pet Crate Simulator
+
+You are working on a s&box game project. Be a careful, practical s&box developer: read the existing code before changing it, use the engine APIs correctly, and verify your work before handing it back.
+
+## First Steps
+
+Before editing code, inspect the local project. Learn the current component patterns, prefab layout, networking style, and naming conventions from the files already in the repo.
+
+Use these references when you are unsure about s&box APIs:
+
+  * Local s&box documentation root: `E:\AI\ReferencedFiles\Docs`
+  * Local s&box docs index: `E:\AI\ReferencedFiles\Docs\llms.txt`
+  * Local s&box API reference: `E:\AI\ReferencedFiles\Docs\api`
+  * Local s&box developer docs: `E:\AI\ReferencedFiles\Docs\dev\doc`
+  * Local s&box engine/public source: `E:\AI\ReferencedFiles\Repos\sbox-public-master`
+  * Facepunch sandbox project examples: `https://github.com/Facepunch/sandbox`
+  * Local API reference files when you need exact method names or component behavior.
+
+Do not guess engine APIs when the answer can be checked locally, in local source, or in official docs. s&box APIs change, and small naming mistakes can waste a lot of time.
+
+## Local Documentation, Source, and Session Memory Bootstrap
+
+This project uses a local-first documentation and source workflow.
+
+The local s&box documentation folder is:
+
+`E:\AI\ReferencedFiles\Docs`
+
+The local s&box engine/public source folder is:
+
+`E:\AI\ReferencedFiles\Repos\sbox-public-master`
+
+At the start of each new development session, before answering project-specific questions or modifying code, build a working session memory from the local project files, the local s&box documentation, and the local s&box engine/public source.
+
+Session memory means temporary working knowledge for the current AI session. Do not assume this knowledge persists after the session restarts unless it exists in a local file.
+
+### Required Startup Behavior
+
+Before beginning development work:
+
+1. Read this project bootstrap document.
+2. Scan the current project folder.
+3. Read the highest-priority local project files first:
+   - `README.md`
+   - `AGENTS.md`
+   - project `.sbproj` files
+   - important `.cs` files
+   - important `.razor` files
+   - important `.prefab` files when prefab work is involved
+   - project configuration files
+4. Read the local s&box documentation index:
+   - `E:\AI\ReferencedFiles\Docs\llms.txt`
+5. Scan the local s&box engine/public source folder:
+   - `E:\AI\ReferencedFiles\Repos\sbox-public-master`
+6. Build a working session map of:
+   - project folder structure
+   - important components and systems
+   - existing coding patterns
+   - prefab layout
+   - networking style
+   - UI/Razor style
+   - asset paths
+   - known conventions
+   - relevant local documentation files
+   - relevant local API reference files
+   - relevant local engine/source files
+   - engine API examples and implementation details
+7. Use this session map as working memory for the current session.
+8. Refresh the session memory when:
+   - new files are created
+   - existing files are modified
+   - the user points to a new folder
+   - the user asks about a system that has not been inspected yet
+   - the answer depends on documentation, source, or code that has not been read yet
+
+### Local-First Documentation and Source Rule
+
+Always inspect local files before using internet sources.
+
+Use this priority order:
+
+1. Project-specific files in the current repo.
+2. Local s&box documentation under `E:\AI\ReferencedFiles\Docs`.
+3. Local s&box API reference under `E:\AI\ReferencedFiles\Docs\api`.
+4. Local s&box engine/public source under `E:\AI\ReferencedFiles\Repos\sbox-public-master`.
+5. Existing source code examples in the project.
+6. Public internet sources only when the local files are missing, incomplete, or insufficient.
+
+Do not search the internet unless:
+
+- The relevant local file is missing.
+- The local documentation/source is incomplete.
+- The user explicitly asks for the latest online documentation.
+- The local documentation/source conflicts with observed engine behavior and verification is required.
+
+When a topic is covered by a local file, prefer that local file as the primary source of truth.
+
+### Local s&box Documentation and Source Paths
+
+When working on s&box topics, use these local folders:
+
+- General docs: `E:\AI\ReferencedFiles\Docs\dev\doc`
+- API reference: `E:\AI\ReferencedFiles\Docs\api`
+- UI/Razor docs: `E:\AI\ReferencedFiles\Docs\dev\doc\ui`
+- Networking docs: `E:\AI\ReferencedFiles\Docs\dev\doc\networking`
+- Scene/component docs: `E:\AI\ReferencedFiles\Docs\dev\doc\scene`
+- Physics/tracing docs: `E:\AI\ReferencedFiles\Docs\dev\doc\physics`
+- Rendering/shader docs: `E:\AI\ReferencedFiles\Docs\dev\doc\rendering`
+- Asset/resource docs: `E:\AI\ReferencedFiles\Docs\dev\doc\assets`
+- Gameplay/input/navigation docs: `E:\AI\ReferencedFiles\Docs\dev\doc\gameplay`
+- Editor tooling docs: `E:\AI\ReferencedFiles\Docs\dev\doc\editor`
+- Dedicated server docs: `E:\AI\ReferencedFiles\Docs\dev\doc\networking\dedicated-servers`
+- Engine/public source: `E:\AI\ReferencedFiles\Repos\sbox-public-master`
+
+Before generating or modifying s&box code, identify which local docs/source files are relevant, read them, then apply the answer to the project.
+
+### Engine Source Usage Rules
+
+Use the local engine/public source folder when:
+
+- Documentation does not clearly explain an API.
+- You need exact method names, overloads, attributes, or property behavior.
+- You need to understand how a component, system, or helper works internally.
+- You need examples of expected usage.
+- You need to verify whether an API exists.
+- You need to resolve conflicts between memory, docs, and actual source.
+
+When using the local engine/public source:
+
+- Prefer source definitions over assumptions.
+- Prefer official source examples over guessed code.
+- Check method signatures before calling APIs.
+- Check attributes and access modifiers before using members.
+- Check namespaces before adding imports.
+- Do not copy large engine source sections into project code unless explicitly required.
+- Use source behavior to guide small, project-appropriate code.
+
+### File Analysis Expectations
+
+When reading files into working session memory, extract and remember:
+
+- important classes
+- important components
+- public APIs
+- method signatures
+- property names
+- `[Property]` usage
+- `[Sync]` usage
+- RPC usage
+- component lifecycle methods
+- networking ownership rules
+- UI/Razor conventions
+- prefab structure
+- asset paths
+- naming conventions
+- TODOs
+- warnings
+- known issues
+- build or runtime errors
+- project-specific helper methods
+- project-specific base classes
+- relevant engine/source implementation details
+
+Do not invent APIs, component names, asset paths, or method signatures that were not found in the local docs, local source, or the project files.
+
+### Answering Rules
+
+When answering development questions:
+
+- Read relevant local files first.
+- Mention which files were checked when useful.
+- Prefer project code over generic examples.
+- Prefer local docs and local source over internet results.
+- If documentation and project code disagree, prefer the project code and mention the conflict.
+- If documentation and engine source disagree, prefer the local engine/source behavior and mention the conflict.
+- If a file is missing, say so clearly.
+- If the answer depends on a file that has not been read, read it before answering.
+- If unsure, search the local files and local source again before guessing.
+
+### Code Modification Rules
+
+Before editing or creating code:
+
+1. Scan the project structure.
+2. Locate similar existing files.
+3. Match the existing style and patterns.
+4. Check local docs/API references for correct usage.
+5. Check local engine/public source when exact behavior or signatures matter.
+6. Apply the change.
+7. Re-read the affected file after editing.
+8. Verify imports, namespaces, method names, lifecycle hooks, and file paths.
+9. Validate the change with a build or the closest available validation command.
+
+Do not make broad unrelated refactors unless they are necessary to complete the requested task safely.
+
+## Working Style
+
+  * Explain what you are checking and why while you work, especially when reading files, touching prefabs, or changing networking.
+  * Be proactive. If the user asks for a fix or feature, implement it instead of only proposing a plan.
+  * Keep changes scoped to the request. Do not refactor unrelated systems unless the refactor is necessary to finish safely.
+  * Preserve the user's edits. The worktree may be dirty; never reset, revert, or overwrite changes you did not make unless the user explicitly asks.
+  * Prefer simple, readable component code over clever abstractions.
+  * If a design choice is ambiguous, follow the patterns already used in this project.
+
+## s&box Project Notes
+
+  * Components usually inherit from `Component`; interaction components may inherit from project-specific base classes such as `Interactable`.
+  * Use `[Property]` for editor-configurable values.
+  * Use `[Sync]` for state that needs to replicate.
+  * Use RPCs deliberately:
+    * `[Rpc.Host]` for work that must execute on the host.
+    * `[Rpc.Owner]` for work that must execute only on the owning client.
+    * `[Rpc.Broadcast]` for cosmetic or shared events that all clients should see.
+  * Avoid hiding gameplay side effects in UI update methods. UI methods like healthbar refreshes should update UI, not award money or mutate gameplay state.
+  * For local-only player data, check the existing singleton/reference pattern before adding a new one.
+
+## Networking Guidance
+
+Think carefully about who owns the object and who is allowed to mutate state.
+
+  * Player money is local-player-owned data. Award money through `PlayerData` using the existing RPC flow instead of directly changing another client's local value.
+  * If a player interaction should reward the interacting player, get the `PlayerData` from the interacting player's controller/component path and call the appropriate `PlayerData` method/RPC.
+  * Keep authoritative gameplay state separate from cosmetic animation.
+  * For smooth network feel, drive important replicated transforms from the owner/host, but broadcast cosmetic events when remote clients should play the same hit, flash, lunge, or bob animation.
+  * Do not rely on every client being allowed to set another player's local data.
+
+## Prefab Safety
+
+Be extremely careful editing `.prefab` files. They are JSON-like, but s&box relies on metadata fields such as `__type`, `__guid`, `__version`, and component structure.
+
+  * Do not round-trip prefab files through generic JSON serializers unless you have verified they preserve all s&box metadata exactly.
+  * In particular, never strip component `__type` fields. If those are missing, s&box will show missing components and models may stop rendering.
+  * Prefer small text patches or carefully targeted edits for prefab changes.
+  * After editing prefabs, validate that:
+    * The file still parses.
+    * Each component still has the correct `__type`.
+    * Model renderers still use `Sandbox.ModelRenderer`.
+    * Model paths still point to valid `.vmdl` assets.
+    * Child object transforms, especially rotations and scales, are intentional.
+
+## Assets and UI
+
+  * When rendering images from `.razor` UI using project assets, use `.vtex` textures. A plain `.png` may work in editor but fail for clients outside the editor.
+  * The user can create `.vtex` assets in s&box by right-clicking an image in the asset browser and choosing the texture creation option.
+  * Reference actual project assets where possible. Do not invent asset paths.
+
+## Current Project Knowledge
+
+These patterns are important in this project:
+
+  * `InteractGivePlayerCoin` handles destructable-style interact targets that lose health when the player presses Use.
+  * Money rewards should go through `PlayerData`, not through UI refresh code.
+  * `PlayerData.AddMoney(...)` applies pet coin multipliers through `PetFramework`.
+  * `PetFramework.EquipPet(GameObject prefab)` should clone the prefab before equipping it.
+  * Equipped pets are stored under the player prefab/player object, and the player prefab owns `PetFramework`.
+  * Pet prefabs live under `Assets/Prefabs/Pets`.
+  * Pet model source files live under `Assets/3rdparty/kenny.nl`.
+  * Pet prefabs should have:
+    * A root object with `PetComponent`.
+    * An `AnimalModel` child.
+    * A `Sandbox.ModelRenderer` on the model child.
+    * The model child rotation set intentionally, usually identity: `0,0,0,1`.
+  * Pet coin multipliers are configured on `PetComponent`.
+  * Pets should orbit the player evenly, move toward their positions instead of teleporting, touch the ground when possible, bob while moving, and lunge/bob toward the destructable the player attacks.
+
+## Animation and Feel
+
+For simple game-feel animation:
+
+  * Prefer time-based interpolation and easing over instant jumps.
+  * Keep the gameplay object stable when possible and animate child visual objects for bounce, squash, lunge, flash, or bob effects.
+  * Separate the base/rest transform from the visual offset so effects can cleanly return to zero.
+  * Use configurable `[Property]` values for distances, durations, speeds, colors, and multipliers so the user can tune them in the editor.
+  * For hit feedback, broadcast cosmetic effects when everyone should see them.
+  * For pets or followers, a simple "move toward target position" behavior is often enough; do not add pathfinding unless the user asks for it.
+
+## Validation Checklist
+
+Before finishing a coding task:
+
+  * Read the final diff.
+  * Check for accidental unrelated edits.
+  * Validate prefab/component metadata if any assets were touched.
+  * When adding new `PetComponent` properties, update existing pet prefabs so the fields are visible/configurable in the editor. Do this with targeted edits and verify the new fields only land on `PetComponent`, not on root objects or `Sandbox.ModelRenderer`.
+  * Run a build or the closest available validation command.
+  * If the build cannot run because of local permissions or environment issues, say that clearly and report what validation did run.
+  * Mention changed files and the important behavior changes in the final response.
+
+## Pet System Notes
+
+  * `PetComponent` is the per-pet content configuration source. Put future pet tuning values there when they belong to the pet prefab, such as display name, coin multiplier, damage, attack interval, attack range multiplier, movement multiplier, bob multiplier, and lunge multiplier.
+  * Pet display names are stored on `PetComponent.DisplayName`, not on prefab root objects or renderer components.
+  * Pet coin multipliers are additive bonuses, not sequential multipliers. Example: `1.1`, `1.8`, and `1.3` should become `1 + 0.1 + 0.8 + 0.3 = 2.2x`.
+  * Equipped pets should move in world space. They should walk toward assigned world positions rather than relying on the player’s local transform.
+  * Pets orbit the player when idle and swarm around the player’s active destructable target when attacking.
+  * Pet attacks should use `InteractGivePlayerCoin.ApplyPetDamage(...)` so pet damage follows the same health, reward, hit feedback, and destroy flow as player attacks.
+  * Pet attack visuals should face the target and lunge in the target direction.
+  * Pet rotation should be interpolated with `PetTurnSpeed`; avoid directly snapping `WorldRotation` every frame unless explicitly desired.
+
+When you are ready to begin after reading this file and the project context, say:
+
+`Ok, lets get started with development! Tell me what to do!`
